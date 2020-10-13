@@ -1,6 +1,6 @@
-# A Parcel Boilerplate
+# A JS Carousel
 
-Hopefully, someday, this will be a Parcel Boilerplate that doesn't suck!
+Let's try to make a JS carousel.
 
 # Usage
 
