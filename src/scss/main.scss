@@ -31,7 +31,6 @@ img {
 	bottom: 0;
 }
 
-// animation in the making
 @keyframes slide-left {
 	from {left: 750px;}
 	to {left: 0px;}
@@ -43,13 +42,6 @@ img {
   }
 
 .carousel .active {
-	// animation: slide-left 1s;
 	position: relative;
 	z-index: 1;
 }
-
-// .carousel .active {
-// 	animation: slide-right 1s;
-// 	position: relative;
-// 	z-index: 1;
-// }
