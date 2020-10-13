@@ -1,5 +1,4 @@
 import '../scss/main.scss';
-import Name from './modules/Example';
+import Carousel from './modules/Carousel';
 
-const name = new Name("Daniel", "Lynch");
-name.printName();
+const carousel = new Carousel();
