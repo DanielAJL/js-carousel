@@ -17,6 +17,7 @@ export default class Carousel {
 		this.findActiveClass().classList.remove('active');
 		const next = active < this.slides.length - 1 ? active + 1 : 0;
 		this.slides[next].classList.toggle('active');
+		this.slides[next].style.animation = "slide-left 0.5s";
 	}
 
 	goPrevSlide() {
@@ -24,6 +25,7 @@ export default class Carousel {
 		this.findActiveClass().classList.remove('active');
 		const next = active === 0 ? this.slides.length - 1 : active - 1;
 		this.slides[next].classList.toggle('active');
+		this.slides[next].style.animation = "slide-right 0.5s";
 	}
 
 
