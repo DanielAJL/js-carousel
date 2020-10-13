@@ -5,7 +5,5 @@ const carouselContainers = Array.from(document.querySelectorAll(".carousel"));
 
 carouselContainers.forEach(container => {
 	const carousel = new Carousel(container);
-
-
-	carousel.test("See this? It's working.");
+	carousel.test();
 })
