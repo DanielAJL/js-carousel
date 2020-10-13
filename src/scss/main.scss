@@ -11,6 +11,45 @@ body {
 	line-height: 1.5;
 }
 
+img {
+	max-width: 100%;
+	width: 100%;
+}
+
+.carousel {
+	max-width: 750px;
+	margin: auto;
+	position: relative;
+	overflow: hidden;
+}
+
 .carousel img:not([class*="active"]) {
 	display: none;
+	z-index: -1;
+	position: absolute;
+	top: 0;
+	bottom: 0;
 }
+
+// animation in the making
+@keyframes slide-left {
+	from {left: 750px;}
+	to {left: 0px;}
+  }
+
+  @keyframes slide-right {
+	from {right: 750px;}
+	to {right: 0px;}
+  }
+
+.carousel .active {
+	// animation: slide-left 1s;
+	position: relative;
+	z-index: 1;
+}
+
+// .carousel .active {
+// 	animation: slide-right 1s;
+// 	position: relative;
+// 	z-index: 1;
+// }
