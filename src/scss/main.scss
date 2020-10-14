@@ -2,7 +2,7 @@
 
 html { font-size: 16px; }
 
-h1 { font-size: 2rem; }
+h1 { font-size: 2rem; text-align: center; }
 
 body {
 	font-family: Arial, Helvetica, sans-serif;
@@ -18,7 +18,7 @@ img {
 
 .carousel {
 	max-width: 750px;
-	margin: auto;
+	margin: 30px auto;
 	position: relative;
 	overflow: hidden;
 }
@@ -31,17 +31,28 @@ img {
 	bottom: 0;
 }
 
-@keyframes slide-left {
-	from {left: 750px;}
-	to {left: 0px;}
-  }
+@keyframes slide-next {
+	from {
+		left: 750px;
+	}
+	to {
+		left: 0px;
+	}
+}
 
-  @keyframes slide-right {
-	from {right: 750px;}
-	to {right: 0px;}
-  }
+@keyframes slide-prev {
+	from {
+		right: 750px;
+	}
+	to {
+		right: 0px;
+	}
+}
 
 .carousel .active {
 	position: relative;
 	z-index: 1;
+	max-height: 400px;
+	object-fit: cover;
+	object-position: 0 -125px;
 }
