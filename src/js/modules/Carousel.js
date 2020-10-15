@@ -32,7 +32,6 @@ export default class Carousel {
 		this.slides[next].classList.toggle('animating');
 
 		this.slides[next].style.animation = `slide-${direction} ${this.speed}ms`;
-		console.log(this.slides[next]);
 		this.animating = true;
 		this.slides[next].addEventListener('animationend', () => {
 			this.afterAnimating(this.slides[next], previousSlide);
