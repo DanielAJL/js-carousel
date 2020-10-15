@@ -25,30 +25,51 @@ npm run build
 <br><br>
 
 
-# The Basics:
+# The HTML Part:
 
-1. Create an element with the class 'carousel'.
+1. Create an element with the class ```.carousel```.
 
 ```html
 <div class="carousel"></div>
 ```
 
-2. Add the images you want inside of your carousel div.
+2. Add your slide divs and give them the ```.slide``` class. The slide containing the ```.active``` class will be the first slide visible.
 
 ```html
 <div class="carousel">
-	<img src="../src/img/image-example-1.jpg" alt="image-example-1.jpg">
-	<img src="../src/img/image-example-2.jpg" alt="image-example-2.jpg">
-	<img src="../src/img/image-example-3.jpg" alt="image-example-3.jpg">
-	<img src="../src/img/image-example-4.jpg" alt="image-example-4.jpg">
+	<div class="slide active"></div>
+	<div class="slide"></div>
+	<div class="slide"></div>
 </div>
 ```
 
-3. Add an 'active' class on the first image, that will be the first slide we will see.
+3. If you want, you can add content to your slides.
 
 ```html
-<img class="active" src="../src/img/image-example-1.jpg" alt="image-example-1.jpg">
+<div class="carousel">
+	<div class="slide active">
+		<div class="caption">
+			<h2>Placeholder Title.</h2>
+			<p>Placeholder paragraph</p>
+		</div>
+	</div>
+		<div class="slide">
+			<img src="../path/example.jpg" alt="example.jpg">
+			<div class="caption">
+				<h2>Placeholder Title.</h2>
+				<p>Placeholder paragraph</p>
+			</div>
+		</div>
+		<div class="slide">
+		<div class="caption">
+			<h2>Placeholder Title.</h2>
+			<p>Placeholder paragraph</p>
+		</div>
+	</div>
+</div>
 ```
-
 <br><br>
+# The JavaScript Part:
+
+
 More coming soon..
