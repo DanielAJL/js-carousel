@@ -72,4 +72,4 @@ npm run build
 # The JavaScript Part:
 
 
-More coming soon..
+More coming soon...
