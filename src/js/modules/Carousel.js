@@ -1,16 +1,39 @@
 export default class Carousel {
 	/**
+ * @description Create a carousel instance
  * @param {HTMLElement} element element containing the 'carousel' class.
  * @param {number} speed slide speed in ms.
+ * @example 
+ * const carousel = new Carousel(document.querySelector('.carousel'), 1000);
  */
 	constructor(element, speed) {
 		this.element = element;
 		this.speed = speed;
+		this.controls = this.generateControls();
+
 		this.slides = Array.from(this.element.querySelectorAll('.slide'));
 
 		this.nextSlide = this.nextSlide.bind(this);
 
 		this.animating = false;
+	};
+
+	generateControls() {
+		for (let index = 0; index < 2; index++) {
+			const element = document.createElement('button');
+			this.element.append(element);
+
+			if (index == 0) { element.classList.add('prev', 'control'); }
+			else { element.classList.add('next', 'control'); }
+		}
+
+		this.element.querySelectorAll('button').forEach(element => {
+			element.addEventListener('click', () => {
+				const firstClassName = element.className.split(" ")[0];
+				this.nextSlide(firstClassName.split(" ")[0]);
+			});
+		});
+
 	};
 
 	findActiveClass() {
