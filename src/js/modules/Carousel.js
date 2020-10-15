@@ -2,7 +2,7 @@ export default class Carousel {
 	constructor(container, speed) {
 		this.container = container;
 		this.speed = `${speed}ms`;
-		this.slides = Array.from(this.container.querySelectorAll('img'));
+		this.slides = Array.from(this.container.querySelectorAll('.slide'));
 
 		this.nextSlide = this.nextSlide.bind(this);
 
@@ -37,6 +37,7 @@ export default class Carousel {
 	afterAnimating(element) {
 		element.style.animation = '';
 		this.animating = false;
+		element.removeEventListener('animationend', this.afterAnimating);
 	}
 
 	// Function for testing purposes.
