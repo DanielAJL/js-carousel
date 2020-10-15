@@ -21,14 +21,13 @@ img {
 	margin: 30px auto;
 	position: relative;
 	overflow: hidden;
-}
-
-.carousel img:not([class*="active"]) {
-	display: none;
-	z-index: -1;
-	position: absolute;
-	top: 0;
-	bottom: 0;
+	.caption {
+		position: absolute;
+		top: 25%;
+		left: 15%;
+		color: #fff;
+		font-size: 2rem;
+	}
 }
 
 @keyframes slide-next {
@@ -53,14 +52,21 @@ img {
 	position: relative;
 	display: block !important;
 	z-index: 1;
-	max-height: 400px;
+	max-height: 100%;
 	object-fit: cover;
 	object-position: 0 -125px;
-	min-height: 400px;
+	height: 400px;
 	width: 100%;
 	overflow: hidden;
+		img {
+			height: 100%;
+			object-fit: cover;
+			object-position: center 10%;
+		}
 }
 
+
+// Code for testing purposes
 .carousel .slide:nth-of-type(1) {
 	background-color: red;
 	display: none;
