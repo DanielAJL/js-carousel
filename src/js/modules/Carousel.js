@@ -8,14 +8,13 @@ export default class Carousel {
 	 * @example 
 	 * const carousel = new Carousel(document.querySelector('.carousel'), 1000);
 	 */
-	constructor(element, speed, auto) {
+	constructor(element, speed, auto = false) {
 		this.element = element;
 		this.speed = speed;
 		this.auto = auto;
 
 		this.controls = this.generateControls();
 		this.slides = Array.from(this.element.querySelectorAll('.slide'));
-		this.nextSlide = this.nextSlide.bind(this);
 		this.animating = false;
 
 		this.autoPlay(this.animating, auto);
@@ -25,7 +24,7 @@ export default class Carousel {
 		if (animating == false && auto == true) {
 			console.log(auto);
 			this.nextSlide('next');
-		} else if (!auto) return;
+		}
 	}
 
 	generateControls() {
@@ -59,26 +58,27 @@ export default class Carousel {
 		const active = this.slides.indexOf(this.findActiveClass());
 		const previousSlide = this.findActiveClass();
 
-		if (direction !== 'prev') { next = active < this.slides.length - 1 ? active + 1 : 0; }
+
+		if (direction === 'next') { next = active < this.slides.length - 1 ? active + 1 : 0; }
 		else { next = active === 0 ? this.slides.length - 1 : active - 1; }
 
-		this.slides[next].classList.add('animating');
-		this.slides[next].classList.add('active');
 		this.slides[next].style.animation = `slide-${direction} ${this.speed}ms`;
+		this.slides[next].classList.add('active', 'animating');
 		this.animating = true;
-		this.slides[next].addEventListener('animationend', () => {
-			this.afterAnimating(this.slides[next], previousSlide);
 
-		});
-
+		const callback = () => {
+			this.afterAnimating(this.slides[next], previousSlide)
+			this.slides[next].removeEventListener('animationend', callback);
+		};
+		this.slides[next].addEventListener('animationend', callback);
 	};
 
 	afterAnimating(activeSlide, previousSlide) {
-		previousSlide.classList.remove('active');
+		previousSlide.classList.remove('active', 'animating');
 		activeSlide.style.animation = '';
 		activeSlide.classList.remove('animating');
 		activeSlide.removeEventListener('animationend', this.afterAnimating);
-
+		console.log(previousSlide);
 		this.animating = false;
 		this.autoPlay(this.animating, this.auto)
 

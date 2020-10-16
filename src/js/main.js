@@ -4,5 +4,5 @@ import Carousel from './modules/Carousel';
 const carouselContainers = Array.from(document.querySelectorAll(".carousel"));
 
 carouselContainers.forEach(container => {
-	const carousel = new Carousel(container, 2000, true);
+	const carousel = new Carousel(container, 2000, false);
 });
