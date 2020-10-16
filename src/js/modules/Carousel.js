@@ -21,42 +21,35 @@ export default class Carousel {
 	};
 
 	autoPlay(animating, auto) {
-		if (animating == false && auto == true) {
-			console.log(auto);
-			this.nextSlide('next');
-		}
+		if (animating === false && auto === true) this.nextSlide('next');
 	}
 
 	generateControls() {
 		for (let index = 0; index < 2; index++) {
-			const element = document.createElement('button');
-			this.element.append(element);
+			const button = document.createElement('button');
+			const directionClass = index === 0 ? 'prev' : 'next';
+			this.element.append(button);
 
-			if (index == 0) { element.classList.add('prev', 'control'); }
-			else { element.classList.add('next', 'control'); }
-		}
-
-		this.element.querySelectorAll('button').forEach(element => {
-			element.addEventListener('click', () => {
+			button.classList.add(directionClass, 'control');
+			button.addEventListener('click', () => {
 				this.auto = false;
-				const firstClassName = element.className.split(" ")[0];
-				this.nextSlide(firstClassName.split(" ")[0]);
+				this.nextSlide(directionClass);
 			});
-		});
 
+		}
 	};
 
-	findActiveClass() {
-		const active = this.slides.find(element => element.classList.contains('active'));
-		return active;
+	findCurrentSlide() {
+		const currentSlide = this.slides.find(slide => slide.classList.contains('active'));
+		return currentSlide;
 	};
 
 	nextSlide(direction) {
 		if (this.animating) return;
 
 		let next;
-		const active = this.slides.indexOf(this.findActiveClass());
-		const previousSlide = this.findActiveClass();
+		const active = this.slides.indexOf(this.findCurrentSlide());
+		const previousSlide = this.findCurrentSlide();
 
 
 		if (direction === 'next') { next = active < this.slides.length - 1 ? active + 1 : 0; }
@@ -70,18 +63,17 @@ export default class Carousel {
 			this.afterAnimating(this.slides[next], previousSlide)
 			this.slides[next].removeEventListener('animationend', callback);
 		};
-		this.slides[next].addEventListener('animationend', callback);
+		this.slides[next].addEventListener('animationend', callback)
 	};
 
 	afterAnimating(activeSlide, previousSlide) {
 		previousSlide.classList.remove('active', 'animating');
 		activeSlide.style.animation = '';
 		activeSlide.classList.remove('animating');
-		activeSlide.removeEventListener('animationend', this.afterAnimating);
-		console.log(previousSlide);
-		this.animating = false;
-		this.autoPlay(this.animating, this.auto)
 
+		this.animating = false;
+
+		this.autoPlay(this.animating, this.auto);
 	};
 
 };
